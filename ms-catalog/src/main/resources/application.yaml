@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ms-catalog
+  mvc:
+    apiversion:
+      use.path-segment: 1
+      supported: 1.0,2.0
+      default: 1.0
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  datasource:
+    url: ${MS_HOTEL_DB_URL:jdbc:postgresql://localhost:5430/catalog}
+    username: ${MS_HOTEL_DB_USERNAME:postgres}
+    password: ${MS_HOTEL_DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
