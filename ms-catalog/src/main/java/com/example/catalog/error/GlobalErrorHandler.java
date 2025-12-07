@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class GlobalErrorHandler extends ResponseEntityExceptionHandler {
+public class GlobalErrorHandler{
 
     @ExceptionHandler(ProductNotFoundException.class)
     ProblemDetail handleNotFound(ProductNotFoundException e) {
