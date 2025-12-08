@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:8081
+@products = {{baseUrl}}/api/v1/products
+@productCode = BOOK-123
+
+### Create a new product
+POST {{products}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "code": "{{productCode}}",
+  "name": "Clean Code",
+  "description": "A Handbook of Agile Software Craftsmanship",
+  "imageUrl": "https://example.com/images/clean-code.jpg",
+  "price": 39.99
+}
+
+### Get product by code
+GET {{products}}/{{productCode}}
+Accept: application/json
+
+### Update product by code
+PUT {{products}}/{{productCode}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Clean Code (Updated)",
+  "description": "Revised edition",
+  "imageUrl": "https://example.com/images/clean-code-v2.jpg",
+  "price": 42.50
+}
+
+### Search products with pagination and filters
+GET {{products}}?name=Clean&minPrice=10&maxPrice=100&size=5&page=0&sort=price,desc
+Accept: application/json
+
+### Delete product by code
+DELETE {{products}}/{{productCode}}
+Accept: */*
