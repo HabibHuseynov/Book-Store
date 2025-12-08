@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: webapp
+
+catalog:
+  client: {MS_CATALOG_BASE_URL:localhost:8081}
+
