@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ms-catalog/ms-catalog.iml" filepath="$PROJECT_DIR$/ms-catalog/ms-catalog.iml" group="ms-catalog" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ms-catalog_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ms-catalog_main.iml" group="ms-catalog" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ms-catalog_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ms-catalog_test.iml" group="ms-catalog" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ms-catalog.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ms-catalog.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/webapp/webapp.iml" filepath="$PROJECT_DIR$/webapp/webapp.iml" />
     </modules>
   </component>
 </project>
