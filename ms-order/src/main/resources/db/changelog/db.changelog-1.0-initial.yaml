@@ -1,0 +1,193 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-sequences
+      author: junie
+      changes:
+        - createSequence:
+            sequenceName: order_id_seq
+            incrementBy: 50
+        - createSequence:
+            sequenceName: order_item_id_seq
+            incrementBy: 50
+        - createSequence:
+            sequenceName: order_event_id_seq
+            incrementBy: 50
+
+  - changeSet:
+      id: 2-create-orders-table
+      author: junie
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: order_number
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_name
+                  type: VARCHAR(255)
+              - column:
+                  name: customer_email
+                  type: VARCHAR(255)
+              - column:
+                  name: customer_phone
+                  type: VARCHAR(50)
+              - column:
+                  name: delivery_address_line1
+                  type: VARCHAR(255)
+              - column:
+                  name: delivery_address_line2
+                  type: VARCHAR(255)
+              - column:
+                  name: delivery_address_city
+                  type: VARCHAR(100)
+              - column:
+                  name: delivery_address_state
+                  type: VARCHAR(100)
+              - column:
+                  name: delivery_address_zip_code
+                  type: VARCHAR(50)
+              - column:
+                  name: delivery_address_country
+                  type: VARCHAR(100)
+              - column:
+                  name: status
+                  type: VARCHAR(50)
+              - column:
+                  name: comments
+                  type: VARCHAR(1000)
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+  - changeSet:
+      id: 3-create-order-items-table
+      author: junie
+      changes:
+        - createTable:
+            tableName: order_items
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: code
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  name: price
+                  type: NUMERIC(19,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: order_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: order_items
+            baseColumnNames: order_id
+            constraintName: fk_order_items_order
+            referencedTableName: orders
+            referencedColumnNames: id
+            onDelete: CASCADE
+
+  - changeSet:
+      id: 4-create-order-events-table
+      author: junie
+      changes:
+        - createTable:
+            tableName: order_events
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: order_number
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: event_id
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: event_type
+                  type: VARCHAR(50)
+              - column:
+                  name: payload
+                  type: TEXT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+
+  - changeSet:
+      id: 5-create-shedlock-table
+      author: junie
+      changes:
+        - createTable:
+            tableName: shedlock
+            columns:
+              - column:
+                  name: name
+                  type: VARCHAR(64)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: lock_until
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: locked_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: locked_by
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
