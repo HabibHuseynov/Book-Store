@@ -1,7 +1,51 @@
 spring:
   application:
     name: webapp
+  mvc:
+    problemdetails:
+      enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          bookstore-webapp:
+            client-id: bookstore-webapp
+            client-secret: P1sibsIrELBhmvK18BOzw1bUl96DcP2z
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+            redirect-uri: "{baseUrl}/login/oauth2/code/bookstore-webapp"
+        provider:
+          bookstore-webapp:
+            issuer-uri: ${REALM_URL}
 
-catalog:
-  client: {MS_CATALOG_BASE_URL:localhost:8081}
+bookstore:
+  api-gateway-url: http://localhost:8989
+
+management:
+  info:
+    git:
+      mode: full
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    tags:
+      application: ${spring.application.name}
+  tracing:
+    sampling:
+      probability: 1.0
+    export:
+      enabled: false
+
+
+server:
+  port: 8080
+  shutdown: graceful
+
+OAUTH2_SERVER_URL: http://localhost:9191
+REALM_URL: ${OAUTH2_SERVER_URL}/realms/bookstore
+
 
