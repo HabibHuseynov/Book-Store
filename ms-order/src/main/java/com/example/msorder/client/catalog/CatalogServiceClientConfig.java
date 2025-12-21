@@ -11,7 +11,7 @@ import java.time.Duration;
 @Configuration
 public class CatalogServiceClientConfig {
     @Bean
-    RestClient restClient(RestClient.Builder builder, CatalogClientProperties properties) {
+    public RestClient restClient(RestClient.Builder builder, CatalogClientProperties properties) {
         ClientHttpRequestFactory requestFactory = ClientHttpRequestFactoryBuilder.simple()
                 .withCustomizer(customizer -> {
                     customizer.setConnectTimeout(Duration.ofSeconds(5));

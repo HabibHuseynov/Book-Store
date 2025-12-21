@@ -25,7 +25,6 @@ server:
   shutdown: graceful
 
 orders:
-  catalog-service-url: http://localhost:8081
   order-events-exchange: orders-exchange
   new-orders-queue: new-orders
   delivered-orders-queue: delivered-orders
@@ -56,3 +55,7 @@ swagger:
 
 OAUTH2_SERVER_URL: http://localhost:9191
 REALM_URL: ${OAUTH2_SERVER_URL}/realms/bookstore
+
+catalog:
+  client:
+    base-url: http://localhost:8081

@@ -41,6 +41,9 @@ dependencies {
     implementation "io.micrometer:micrometer-registry-prometheus:1.16.1"
     implementation "io.micrometer:micrometer-tracing-bridge-otel:1.6.1"
     implementation "io.opentelemetry:opentelemetry-exporter-zipkin:1.39.0"
+    implementation 'org.springframework.boot:spring-boot-http-client:4.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-restclient'
+    implementation 'org.springframework.boot:spring-boot-starter-json'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
